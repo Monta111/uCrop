@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.yalantis.ucrop.callback.BitmapLoadCallback;
 import com.yalantis.ucrop.model.ExifInfo;
+import com.yalantis.ucrop.task.BitmapLoadTask;
 import com.yalantis.ucrop.util.BitmapLoadUtils;
 import com.yalantis.ucrop.util.FastBitmapDrawable;
 import com.yalantis.ucrop.util.RectUtils;
@@ -54,6 +55,8 @@ public class TransformImageView extends AppCompatImageView {
 
     private String mImageInputPath, mImageOutputPath;
     private ExifInfo mExifInfo;
+
+    private BitmapLoadTask loadTask;
 
     /**
      * Interface for rotation and scale change notifying.
@@ -130,6 +133,11 @@ public class TransformImageView extends AppCompatImageView {
         return mExifInfo;
     }
 
+    public void cancelLoadImage() {
+        if(loadTask != null)
+            loadTask.cancel();
+    }
+
     /**
      * This method takes an Uri as a parameter, then calls method to decode it into Bitmap with specified size.
      *
@@ -139,7 +147,7 @@ public class TransformImageView extends AppCompatImageView {
     public void setImageUri(@NonNull Uri imageUri, @Nullable Uri outputUri) throws Exception {
         int maxBitmapSize = getMaxBitmapSize();
 
-        BitmapLoadUtils.decodeBitmapInBackground(getContext(), imageUri, outputUri, maxBitmapSize, maxBitmapSize,
+        loadTask = BitmapLoadUtils.decodeBitmapInBackground(getContext(), imageUri, outputUri, maxBitmapSize, maxBitmapSize,
                 new BitmapLoadCallback() {
 
                     @Override

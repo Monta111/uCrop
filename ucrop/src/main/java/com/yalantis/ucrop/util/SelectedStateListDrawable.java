@@ -9,7 +9,7 @@ import android.graphics.drawable.StateListDrawable;
  */
 public class SelectedStateListDrawable extends StateListDrawable {
 
-    private int mSelectionColor;
+    private final int mSelectionColor;
 
     public SelectedStateListDrawable(Drawable drawable, int selectionColor) {
         super();

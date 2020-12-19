@@ -46,7 +46,7 @@ import androidx.transition.AutoTransition;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
-import static android.app.Activity.RESULT_OK;
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 
 @SuppressWarnings("ConstantConditions")
 public class UCropFragment extends Fragment {
@@ -73,7 +73,6 @@ public class UCropFragment extends Fragment {
     private UCropFragmentCallback callback;
 
     private int mActiveControlsWidgetColor;
-
     @ColorInt
     private int mRootViewBackgroundColor;
     private int mLogoColor;
@@ -87,7 +86,7 @@ public class UCropFragment extends Fragment {
     private OverlayView mOverlayView;
     private ViewGroup mWrapperStateAspectRatio, mWrapperStateRotate, mWrapperStateScale;
     private ViewGroup mLayoutAspectRatio, mLayoutRotate, mLayoutScale;
-    private List<ViewGroup> mCropAspectRatioViews = new ArrayList<>();
+    private final List<ViewGroup> mCropAspectRatioViews = new ArrayList<>();
     private TextView mTextViewRotateAngle, mTextViewScalePercent;
     private View mBlockingView;
 
@@ -194,7 +193,7 @@ public class UCropFragment extends Fragment {
     }
 
     /**
-     * This method extracts {@link com.yalantis.ucrop.UCrop.Options #optionsBundle} from incoming bundle
+     * This method extracts {@link UCrop.Options #optionsBundle} from incoming bundle
      * and setups fragment, {@link OverlayView} and {@link CropImageView} properly.
      */
     @SuppressWarnings("deprecation")
@@ -277,7 +276,7 @@ public class UCropFragment extends Fragment {
         view.findViewById(R.id.ucrop_frame).setBackgroundColor(mRootViewBackgroundColor);
     }
 
-    private TransformImageView.TransformImageListener mImageListener = new TransformImageView.TransformImageListener() {
+    private final TransformImageView.TransformImageListener mImageListener = new TransformImageView.TransformImageListener() {
         @Override
         public void onRotate(float currentAngle) {
             setAngleText(currentAngle);
@@ -303,7 +302,7 @@ public class UCropFragment extends Fragment {
     };
 
     /**
-     * Use {@link #mActiveWidgetColor} for color filter
+     * Use {@link #mActiveControlsWidgetColor} for color filter
      */
     private void setupStatesWrapper(View view) {
         ImageView stateScaleImageView = view.findViewById(R.id.image_view_state_scale);
@@ -402,6 +401,7 @@ public class UCropFragment extends Fragment {
                 rotateByAngle(90);
             }
         });
+
         setAngleTextColor(mActiveControlsWidgetColor);
     }
 

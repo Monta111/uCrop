@@ -7,10 +7,11 @@ import android.graphics.RectF;
  */
 public class ImageState {
 
-    private RectF mCropRect;
-    private RectF mCurrentImageRect;
+    private final RectF mCropRect;
+    private final RectF mCurrentImageRect;
 
-    private float mCurrentScale, mCurrentAngle;
+    private final float mCurrentScale;
+    private final float mCurrentAngle;
 
     public ImageState(RectF cropRect, RectF currentImageRect, float currentScale, float currentAngle) {
         mCropRect = cropRect;

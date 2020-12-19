@@ -56,18 +56,18 @@ public class OverlayView extends View {
     private boolean mShowCropFrame, mShowCropGrid;
     private boolean mCircleDimmedLayer;
     private int mDimmedColor;
-    private Path mCircularPath = new Path();
-    private Paint mDimmedStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint mCropGridPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint mCropFramePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Paint mCropFrameCornersPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Path mCircularPath = new Path();
+    private final Paint mDimmedStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mCropGridPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mCropFramePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mCropFrameCornersPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     @FreestyleMode
     private int mFreestyleCropMode = DEFAULT_FREESTYLE_CROP_MODE;
     private float mPreviousTouchX = -1, mPreviousTouchY = -1;
     private int mCurrentTouchCornerIndex = -1;
-    private int mTouchPointThreshold;
-    private int mCropRectMinSize;
-    private int mCropRectCornerTouchAreaLineLength;
+    private final int mTouchPointThreshold;
+    private final int mCropRectMinSize;
+    private final int mCropRectCornerTouchAreaLineLength;
 
     private OverlayViewChangeListener mCallback;
 
@@ -211,13 +211,6 @@ public class OverlayView extends View {
      */
     public void setCropGridColor(@ColorInt int color) {
         mCropGridPaint.setColor(color);
-    }
-
-    /**
-     * Setter for crop grid corner color
-     */
-    public void setCropGridCornerColor(@ColorInt int color) {
-        mCropFrameCornersPaint.setColor(color);
     }
 
     /**
@@ -552,7 +545,6 @@ public class OverlayView extends View {
                 getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_frame_stoke_width));
         int cropFrameColor = a.getColor(R.styleable.ucrop_UCropView_ucrop_frame_color,
                 getResources().getColor(R.color.ucrop_color_default_crop_frame));
-
         mCropFramePaint.setStrokeWidth(cropFrameStrokeSize);
         mCropFramePaint.setColor(cropFrameColor);
         mCropFramePaint.setStyle(Paint.Style.STROKE);
